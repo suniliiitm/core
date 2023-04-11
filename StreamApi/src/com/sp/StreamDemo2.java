@@ -3,7 +3,9 @@ package com.sp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StreamDemo2 {
 
@@ -20,6 +22,13 @@ public class StreamDemo2 {
 		
 		List<String> getPhoneNumber = plist.stream().map(e->e.getPhoneNumber()).collect(Collectors.toList());
 		System.out.println(getPhoneNumber);
+		Optional<String> phone=plist.stream().filter(e->e.getAddress().equals("Delhi"))
+				.map(Persons::getPhoneNumber).findAny();
+	    		
+		
+	    	System.out.println("====="+phone);	
+	    	
+	
 		
 		
         Map<String,List<Persons>> map =plist.stream().collect(Collectors.groupingBy(Persons::getAddress));
